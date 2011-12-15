@@ -1,24 +1,26 @@
-// Simple javascript metronom.
+// Simple javascript metronom for scheduled tasks.
 // by Adam Musial-Bright
+// git@github.com:musial-bright/Metronom.git
 
 (function() {
 
-	metronom = {
-		
-		state : {
-			"id" : undefined,
-		},
+  Metronom = function(action, time) {
+		this.action = action;
+    this.time = time;
+    
+		this.state = {
+			"id"    : undefined
+    }
 			
-		start : function(action, time) {
-			metronom.stop(metronom.state.id);
-			metronom.state.id = setInterval(action, time);
-			return metronom.state.id;
-		},
-		
-		stop : function() {
-			clearInterval(metronom.state.id);
+		this.start = function() {
+			this.stop(this.state.id);
+      this.state.id = setInterval(this.action, this.time);
+			return this.state.id;
 		}
-
+		
+		this.stop = function() {
+			clearInterval(this.state.id);
+		}
 	}
 	
 }());
